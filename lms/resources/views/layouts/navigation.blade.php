@@ -49,7 +49,7 @@
                             </x-slot>
 
                             <x-slot name="content">
-                                <x-dropdown-link :href="route('profile.edit')">
+                                <x-dropdown-link :href="route('cohorts.create')">
                                     {{ __('Add Cohort') }}
                                 </x-dropdown-link>
                                 <x-dropdown-link :href="route('cohorts.index')">
@@ -109,12 +109,17 @@
                     <x-nav-link :href="route('home')" :active="request()->routeIs('home')">Tasks</x-nav-link>
                     <x-nav-link :href="route('home')" :active="request()->routeIs('home')">Portfolio Matrix</x-nav-link>
                     <x-nav-link :href="route('home')" :active="request()->routeIs('home')">Progress Reviews</x-nav-link>
-                    <x-nav-link :href="route('home')" :active="request()->routeIs('home')">OTJ Logs</x-nav-link>
+                    <x-nav-link 
+                        :href="route('otj.indexForLearner', ['learner' => Auth::user()->learner->id ?? ''])" 
+                        :active="request()->routeIs('otj.indexForLearner')"
+                    >
+                        OTJ Logs
+                    </x-nav-link>
                     @endif
 
                     @if (Auth::user()->hasRole('coach'))
                     <x-nav-link :href="route('home')" :active="request()->routeIs('home')">Home</x-nav-link>
-                    <x-nav-link :href="route('coach.learners')" :active="request()->routeIs('home')">Learners</x-nav-link>
+                    <x-nav-link :href="route('learners.index')" :active="request()->routeIs('home')">Learners</x-nav-link>
                     <x-nav-link :href="route('home')" :active="request()->routeIs('home')">Progress Reviews</x-nav-link>
                     @endif
                 </div>

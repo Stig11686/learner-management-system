@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Learner;
+use Illuminate\Support\Facades\Auth;
+
 
 class LearnerController extends Controller
 {
@@ -38,11 +40,29 @@ class LearnerController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show($id)
+    public function show(Learner $learner)
     {
-        $learner = Learner::findOrFail($id);
+        //this needs thinking about - mainly what data to view and how to display it
+        $learner = Learner::with([
+            'user',
+            'cohort',
+            'cohort.course', 
+            'cohort.lessons' => function($query){
+                $query->withPivot(['date', 'duration']);
+            }, 
+            'coaching_meetings', 
+            'progress_reviews'])
+            ->where('id', $learner->id)
+            ->first();
+            
+        if (!$learner) {
+            abort(404, 'Learner not found');
+        }
 
-        return view('coach.learner', [
+        // Combine cohort lessons, coaching meetings, and progress reviews into a single training plan
+        
+
+        return view('learner.dashboard', [
             'learner' => $learner,
         ]);
     }

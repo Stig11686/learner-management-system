@@ -20,6 +20,7 @@
                         <th class="border border-gray-300 px-4 py-2 text-left text-sm font-medium text-gray-700">KSB Target</th>
                         <th class="border border-gray-300 px-4 py-2 text-left text-sm font-medium text-gray-700">Tasks Outstanding</th>
                         <th class="border border-gray-300 px-4 py-2 text-left text-sm font-medium text-gray-700">Attendance %</th>
+                        <th class="border border-gray-300 px-4 py-2 text-left text-sm font-medium text-gray-700">See Otj's</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -27,7 +28,7 @@
                         <tr class="hover:bg-gray-50">
                             <td class="border border-gray-300 px-4 py-2 text-sm text-gray-600">
                                 <a 
-                                    href="{{ route('learners.show', $learner->id) }}" 
+                                    href="{{ route('learners.show', $learner) }}" 
                                     class="text-blue-500 hover:underline">
                                     {{ ucfirst($learner->user->name) }}
                                 </a>
@@ -42,6 +43,15 @@
                             <td class="border border-gray-300 px-4 py-2 text-sm text-gray-600">{{ $learner->otjh_target }}</td>
                             <td class="border border-gray-300 px-4 py-2 text-sm text-gray-600">{{ $learner->ksbs_hit ?? '0' }}</td>
                             <td class="border border-gray-300 px-4 py-2 text-sm text-gray-600">{{ $learner->ksb_target ?? '0' }}</td>
+                            <td class="border border-gray-300 px-4 py-2 text-sm text-gray-600">Coming Soon!</td>
+                            <td class="border border-gray-300 px-4 py-2 text-sm text-gray-600">Coming Soon!</td>
+                            <td class="border border-gray-300 px-4 py-2 text-sm text-gray-600">
+                                <a href="{{ route('off-the-job-logs.showForLearner', $learner) }}" 
+                                    class="text-blue-600 hover:underline"
+                                >
+                                    Show OTJ Logs
+                                </a>
+                            </td>
                         </tr>
                     @empty
                         <tr>

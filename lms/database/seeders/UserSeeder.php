@@ -50,7 +50,7 @@ class UserSeeder extends Seeder
             'employer' => 'BVSWebDesign',
             'start_date' => now()->subMonths(6),
             'otjh_target' => 318,
-            'otjh_actual' => 115,
+            'otjh_actual' => 0,
             'drive_link' => '',
             'end_date' => now()->addMonths(12),
             'rag_rating' => 'amber',

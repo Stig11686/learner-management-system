@@ -22,14 +22,15 @@ class RolesAndPermissionsSeeder extends Seeder
         // Create permissions
         Permission::create(['name' => 'view learner dashboard']);
         Permission::create(['name' => 'manage learners']);
-        Permission::create(['name' => 'view-cohorts']);
+        Permission::create(['name' => 'control-resources']);
         Permission::create(['name' => 'view-learners']);
 
         // Assign permissions to roles
         $learnerRole->givePermissionTo('view learner dashboard');
         $managerRole->givePermissionTo('manage learners');
-        $managerRole->givePermissionTo('view-cohorts');
+        $managerRole->givePermissionTo('control-resources');
         $managerRole->givePermissionTo('view-learners');
+        $coachRole->givePermissionTo('control-resources');
         $coachRole->givePermissionTo('view-learners');
     }
 

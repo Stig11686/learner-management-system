@@ -3,19 +3,15 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Cohort;
-use App\Models\Course;
 
-class CohortController extends Controller
+class SessionController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $cohorts = Cohort::with('learners')->get();
-
-        return view('cohorts.index', compact('cohorts'));
+        //
     }
 
     /**
@@ -23,11 +19,7 @@ class CohortController extends Controller
      */
     public function create()
     {
-        $courses = Course::all();
-        
-        return view('cohorts.create', [
-            'courses' => $courses,
-        ]);
+        //
     }
 
     /**
@@ -35,15 +27,7 @@ class CohortController extends Controller
      */
     public function store(Request $request)
     {
-        $name = $request->input('name');
-        $courseId = $request->input('course');
-
-        Cohort::create([
-            'name' => $name,
-            'course_id' => $courseId,
-        ]);
-
-        return redirect()->route('cohorts.index');
+        //
     }
 
     /**
@@ -59,7 +43,7 @@ class CohortController extends Controller
      */
     public function edit(string $id)
     {
-        return view('cohorts.edit');
+        //
     }
 
     /**

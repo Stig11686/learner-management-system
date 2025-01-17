@@ -16,10 +16,16 @@ class Learner extends Model
 
     protected $fillable = [
         'user_id', 
+        'cohort_id',
+        'trainer_id',
         'employer', 
         'start_date', 
         'end_date', 
         'target_otj_hours',
+        'otjh_actual',
+        'otjh_target',
+        'drive_link',
+
     ];
 
     public function user()
@@ -28,6 +34,11 @@ class Learner extends Model
     }
 
     public function trainer()
+    {
+        return $this->belongsTo(Trainer::class, 'trainer_id');
+    }
+
+    public function coach()
     {
         return $this->belongsTo(Trainer::class, 'trainer_id');
     }
@@ -53,6 +64,11 @@ class Learner extends Model
 
     public function coaching_meetings(){
         return $this->hasMany(CoachingMeeting::class);
+    }
+
+    public function otjLogs()
+    {
+        return $this->hasMany(OTJLog::class);
     }
 
 }
